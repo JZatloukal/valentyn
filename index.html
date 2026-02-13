@@ -430,72 +430,71 @@
       if (backTo2Btn) backTo2Btn.addEventListener('click', () => showStep(1));
 
       // --- typewriter ----------------------------------------------------------
-      const letterLines = [
-        "Ahoj lásko,\n\n",
-        "jestli tohle čteš, tak jsi právě zvládla moji \"těžkou šifru\"…\n",
-        "nebo jsi to vzdala a napsala mi o řešení 😭\n\n",
+      const letterText = `Ahoj lásko,
 
-        "Chtěl jsem ti napsat pár vět ručně.\n",
-        "Ale po čtvrtém zmačkaném papíru jsem si musel přiznat, že můj rukopis není to, co jsem si myslel, a rozhodl jsem se jít touto cestou.\n\n",
+jestli tohle čteš, tak jsi právě zvládla moji "těžkou šifru"…
+nebo jsi to vzdala a napsala mi o řešení 😭
 
-        "Jsem vděčný za to, že tě mám.\n",
-        "Možná to někdy neumím dát dost najevo, ale věř mi, že si toho vážím víc, než dokážu říct.\n\n",
+Chtěl jsem ti napsat pár vět ručně.
+Ale po čtvrtém zmačkaném papíru jsem si musel přiznat, že můj rukopis není to, co jsem si myslel, a rozhodl jsem se jít touto cestou.
 
-        "Jsi moje budoucnost.\n",
-        "A jsi můj pocit klidu.\n\n",
+Jsem vděčný za to, že tě mám.
+Možná to někdy neumím dát dost najevo, ale věř mi, že si toho vážím víc, než dokážu říct.
 
-        "Když přemýšlím nad tím, kde mám svůj vnitřní mír,\n",
-        "je to kdekoliv, dokud tam jsi ty.\n\n",
+Jsi moje budoucnost.
+A jsi můj pocit klidu.
 
-        "Vím, že poslední dobou je to těžké.\n",
-        "Ale možná právě proto si jednou budeme vážit toho, jak lehké to bude.\n\n",
+Když přemýšlím nad tím, kde mám svůj vnitřní mír,
+je to kdekoliv, dokud tam jsi ty.
 
-        "Jednou se ohlédneme a řekneme si, že tohle období nás jen posílilo.\n",
-        "A že jsme to zvládli spolu.\n\n",
+Vím, že poslední dobou je to těžké.
+Ale možná právě proto si jednou budeme vážit toho, jak lehké to bude.
 
-        "A to je pro mě nejdůležitější.\n\n",
+Jednou se ohlédneme a řekneme si, že tohle období nás jen posílilo.
+A že jsme to zvládli spolu.
 
-        "Poslední dobou často vzpomínám na to, jak jsme spolu začali být.\n",
-        "Na první chvíle, kdy jsme spolu trávili víc času.\n\n",
+A to je pro mě nejdůležitější.
 
-        "Za ten rok a půl jsme se oba změnili.\n",
-        "Změnily se naše priority, pohled na věci… možná i tempo života.\n\n",
+Poslední dobou často vzpomínám na to, jak jsme spolu začali být.
+Na první chvíle, kdy jsme spolu trávili víc času.
 
-        "Ale pokaždé, když nad tím přemýšlím, skončím u stejného závěru.\n\n",
+Za ten rok a půl jsme se oba změnili.
+Změnily se naše priority, pohled na věci… možná i tempo života.
 
-        "Pořád jsi ta stejná žena, do které jsem se zamiloval.\n",
-        "A kterou miluji.\n\n",
+Ale pokaždé, když nad tím přemýšlím, skončím u stejného závěru.
 
-        "Jsi silnější, než si sama myslíš.\n",
-        "A každý den mi to znovu dokazuješ.\n\n",
+Pořád jsi ta stejná žena, do které jsem se zamiloval.
+A kterou miluji.
 
-        "Jsem na tebe opravdu pyšný.\n",
-        "A hrdý, že můžu být vedle tebe.\n\n",
+Jsi silnější, než si sama myslíš.
+A každý den mi to znovu dokazuješ.
 
-        "Je to náš druhý Valentýn, který trávíme jako pár.\n\n",
+Jsem na tebe opravdu pyšný.
+A hrdý, že můžu být vedle tebe.
 
-        "Jsem si jistý, že jsme si dnešní film užili.\n",
-        "Že máš vedle sebe vystavenou kytičku.\n",
-        "A že si k tomu možná dáváš čokoládu, zatímco tohle čteš.\n\n",
+Je to náš druhý Valentýn, který trávíme jako pár.
 
-        "A jsem si jistý ještě jednou věcí.\n\n",
+Jsem si jistý, že jsme si dnešní film užili.
+Že máš vedle sebe vystavenou kytičku.
+A že si k tomu možná dáváš čokoládu, zatímco tohle čteš.
 
-        "Že těchto Valentýnů nás čeká ještě spousta.\n",
-        "A že ten příští už budeme trávit spolu.\n\n",
+A jsem si jistý ještě jednou věcí.
 
-        "A já ti uvařím to nejlepší valentýnské menu na světě. 🙂\n\n",
+Že těchto Valentýnů nás čeká ještě spousta.
+A že ten příští už budeme trávit spolu.
 
-        "A i kdyby se všechno kolem změnilo,\n",
-        "jedna věc zůstane stejná.\n\n",
+A já ti uvařím to nejlepší valentýnské menu na světě. 🙂
 
-        "Já si vybírám tebe.\n",
-        "Znovu a znovu.\n\n",
+A i kdyby se všechno kolem změnilo,
+jedna věc zůstane stejná.
 
-        "A vždycky budu.\n\n",
+Já si vybírám tebe.
+Znovu a znovu.
 
-        "Miluji tě.\n",
-        "Honzulka2310"
-      ];
+A vždycky budu.
+
+Miluji tě.
+Honzulka2310`;
 
       const typeTarget = document.getElementById('typeTarget');
       const cursor = document.getElementById('cursor');
@@ -518,34 +517,31 @@
 
         const baseCharDelay = 30;
         const baseLineDelay = 360;
-        const slowFromIndex = letterLines.findIndex(l => l.startsWith("A i kdyby se všechno kolem změnilo"));
-        const slowStart = slowFromIndex >= 0 ? slowFromIndex : (letterLines.length - 10);
+      const slowFromIndex = letterText.indexOf("A i kdyby se všechno kolem změnilo");
+      const slowStart = slowFromIndex >= 0 ? slowFromIndex : Math.max(0, letterText.length - 400);
 
-        for (let i = 0; i < letterLines.length; i++) {
-          const line = letterLines[i];
+      for (let i = 0; i < letterText.length; i++) {
+        const ch = letterText[i];
 
-          // make the ending slower and more dramatic
-          const isEnding = i >= slowStart;
-          const charDelay = isEnding ? 42 : baseCharDelay;
-          const lineDelay = isEnding ? 520 : baseLineDelay;
+        const isEnding = i >= slowStart;
+        const charDelay = isEnding ? 42 : baseCharDelay;
 
-          // extra pause right before the final "Miluji tě."
-          if (line.trim() === "Miluji tě.") {
-            await new Promise(r => setTimeout(r, 900));
-          }
+        // slightly longer pause on newlines to feel like paragraphs
+        const extraPause = (ch === "\n") ? (isEnding ? 220 : 140) : 0;
 
-          for (const ch of line) {
-            typeTarget.textContent += ch;
-            await new Promise(r => setTimeout(r, charDelay));
-          }
+        typeTarget.textContent += ch;
+        await new Promise(r => setTimeout(r, charDelay + extraPause));
 
-          // a slightly longer pause after "A vždycky budu."
-          if (line.trim() === "A vždycky budu.") {
-            await new Promise(r => setTimeout(r, 900));
-          } else {
-            await new Promise(r => setTimeout(r, lineDelay));
-          }
+        // extra pause right before the final "Miluji tě."
+        if (letterText.startsWith("Miluji tě.", i)) {
+          await new Promise(r => setTimeout(r, 900));
         }
+
+        // a slightly longer pause after "A vždycky budu."
+        if (letterText.startsWith("A vždycky budu.", i)) {
+          await new Promise(r => setTimeout(r, 900));
+        }
+      }
 
         cursor.style.display = 'none';
         nextBtn.style.display = 'inline-block';

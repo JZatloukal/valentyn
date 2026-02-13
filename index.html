@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pro Týnušku 💌</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+    :root{
+      --txt:#160d15;
+      --muted: rgba(22,13,21,.82);
+      --btnBg: rgba(255,255,255,.42);
+      --btnBorder: rgba(22,13,21,.18);
+      --btnTxt: rgba(22,13,21,.92);
+      --hair: rgba(22,13,21,.10);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--txt);
+      font-family: "Quicksand", -apple-system, system-ui, "Segoe UI", Roboto, Arial;
+      background:
+        radial-gradient(900px 600px at 18% 12%, rgba(255,255,255,.70), transparent 60%),
+        radial-gradient(850px 600px at 82% 18%, rgba(255,255,255,.55), transparent 62%),
+        radial-gradient(900px 700px at 70% 85%, rgba(255,255,255,.38), transparent 60%),
+        linear-gradient(135deg, rgba(255,209,232,.85), rgba(217,199,255,.78));
+      overflow-x:hidden;
+    }
+
+    /* soft blobs */
+    body:before,
+    body:after{
+      content:"";
+      position:fixed;
+      width:520px;
+      height:520px;
+      border-radius:999px;
+      filter: blur(64px);
+      opacity:.18;
+      z-index:-1;
+      animation: floaty 10s ease-in-out infinite;
+      pointer-events:none;
+    }
+    body:before{
+      left:-160px;
+      top:120px;
+      background: radial-gradient(circle at 30% 30%, rgba(236,72,153,.95), rgba(124,58,237,0) 70%);
+    }
+    body:after{
+      right:-170px;
+      bottom:80px;
+      background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.90), rgba(185,243,255,0) 70%);
+      animation-delay:-2.5s;
+    }
+    @keyframes floaty{
+      0%,100%{transform: translateY(0) translateX(0) scale(1)}
+      50%{transform: translateY(-18px) translateX(10px) scale(1.03)}
+    }
+
+    .step{
+      display:none;
+      min-height:100vh;
+      padding: clamp(22px, 4vw, 44px);
+    }
+    .step.active{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      animation: fadeIn .32s ease;
+    }
+    @keyframes fadeIn{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)}}
+
+    .max{
+      width: min(860px, 100%);
+    }
+
+    /* Step 1: big romantic hello */
+    .hello{
+      font-family: inherit;
+      font-weight: 700;
+      font-size: clamp(58px, 10vw, 120px);
+      line-height: 1.08;
+      letter-spacing: .2px;
+      margin: 0;
+      padding-bottom: 0.10em;
+
+      background: linear-gradient(135deg,
+        rgba(236,72,153,.92) 0%,
+        rgba(168,85,247,.92) 55%,
+        rgba(124,58,237,.88) 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+
+      text-shadow:
+        0 10px 26px rgba(236,72,153,.16),
+        0 2px 0 rgba(255,255,255,.14);
+
+      opacity: 0;
+      transform: translateY(16px) scale(.99);
+      filter: blur(2px);
+      animation: helloIn 900ms cubic-bezier(.2,.9,.2,1) forwards;
+    }
+    @keyframes helloIn{
+      0%{opacity:0; transform:translateY(18px) scale(.985); filter: blur(2px)}
+      100%{opacity:1; transform:translateY(0) scale(1); filter: blur(0)}
+    }
+
+
+    .subtitle{
+      margin: 34px auto 0 auto;
+      color: var(--muted);
+      font-size: clamp(16px, 2.35vw, 20px);
+      line-height: 1.75;
+      font-weight: 500;
+      max-width: 46ch;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: subIn 700ms ease forwards;
+      animation-delay: 620ms;
+      text-shadow: 0 2px 10px rgba(255,255,255,.55);
+    }
+    @keyframes subIn{to{opacity:1; transform:translateY(0)}}
+
+    .ctaRow{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top: 22px;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid var(--btnBorder);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 15px;
+      cursor:pointer;
+      background: var(--btnBg);
+      color: var(--btnTxt);
+      box-shadow: 0 10px 28px rgba(22,13,21,.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{background: rgba(255,255,255,.55); border-color: rgba(22,13,21,.22)}
+    .btn:active{transform: translateY(1px)}
+
+
+    /* Step 1: arrow-only CTA (minimal, cute) */
+    .btn.arrow{
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 10px 14px;
+      font-size: 28px;
+      line-height: 1;
+      color: rgba(22,13,21,.70);
+      text-decoration: none;
+      position: relative;
+    }
+    .btn.arrow::before{
+      content:"";
+      position:absolute;
+      inset:-8px -10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.25);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: scale(.96);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .btn.arrow span{
+      position: relative;
+      display:inline-block;
+      transform: translateX(0);
+      transition: transform .18s ease, color .18s ease;
+    }
+    .btn.arrow:hover{color: rgba(22,13,21,.90)}
+    .btn.arrow:hover::before{opacity:1; transform: scale(1)}
+    .btn.arrow:hover span{transform: translateX(3px)}
+    .btn.arrow:active span{transform: translateX(5px)}
+    .btn.arrow:focus-visible{
+      outline: 2px solid rgba(236,72,153,.35);
+      outline-offset: 4px;
+      border-radius: 999px;
+    }
+
+    /* letter */
+    .sectionTitle{
+      margin:0 0 10px 0;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing:.2px;
+      font-weight: 700;
+      color: rgba(22,13,21,.92);
+    }
+
+    .letter{
+      margin: 18px auto 0 auto;
+      text-align:left;
+      font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      font-size: clamp(20px, 3.2vw, 28px);
+      font-weight: 600;
+      line-height: 2.05;
+      color: rgba(22,13,21,.92);
+      white-space: pre-wrap;
+      padding: 2px 0 0 18px;
+      max-width: 54ch;
+      border-left: 1px solid rgba(22,13,21,.14);
+      text-shadow: 0 2px 10px rgba(255,255,255,.55);
+    }
+    .ctaRow.step2{
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+    }
+    @media (max-width: 520px){
+      .ctaRow.step2{justify-content:center}
+    }
+
+    .cursor{
+      display:inline-block;
+      width:10px;
+      height:16px;
+      vertical-align:-2px;
+      border-bottom:2px solid rgba(22,13,21,.55);
+      animation: blink 1s steps(2, start) infinite;
+    }
+    @keyframes blink{to{visibility:hidden}}
+
+    /* Step 3 content */
+    .lead{
+      margin: 6px 0 0 0;
+      color: var(--muted);
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.75;
+    }
+
+    .facts{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap: 14px;
+      text-align:left;
+    }
+    @media (min-width:820px){
+      .facts{grid-template-columns: 1fr 1fr 1fr}
+    }
+
+    .fact{
+      padding: 14px 14px;
+      border-top: 1px solid var(--hair);
+    }
+    .fact h3{margin:0 0 6px 0; font-size:16px}
+    .fact p{margin:0; color:var(--muted); line-height:1.7; font-size:15px}
+
+    .legend{
+      margin-top: 22px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      text-align:left;
+    }
+    @media (min-width:820px){
+      .legend{grid-template-columns: 1fr 1fr 1fr}
+    }
+
+    .pill{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 0;
+      border-top: 1px solid var(--hair);
+    }
+
+    .dot{width:12px; height:12px; border-radius:50%; margin-top:6px; flex:0 0 auto;}
+    .dot.purple{background: linear-gradient(135deg, #7c3aed, #ec4899)}
+    .dot.blue{background: linear-gradient(135deg, #2563eb, #06b6d4)}
+    .dot.yellow{background: linear-gradient(135deg, #f59e0b, #fbbf24)}
+
+    .pill b{display:block; font-size:15px; margin-bottom:4px}
+    .pill span{display:block; color:var(--muted); line-height:1.6; font-size:15px}
+
+    .footer{
+      margin-top: 22px;
+      color: rgba(22,13,21,.62);
+      font-size: 13px;
+      line-height: 1.6;
+      text-align:center;
+    }
+
+    /* initial button reveal */
+    #toStep2{display:none}
+
+    /* accessibility */
+    @media (prefers-reduced-motion: reduce){
+      body:before, body:after{animation:none}
+      .step.active{animation:none}
+      .hello, .subtitle{animation:none !important; opacity:1; transform:none !important; filter:none !important}
+    }
+  </style>
+</head>
+<body>
+  <!-- STEP 1 -->
+  <section class="step active" id="step1">
+    <div class="max">
+      <h1 class="hello">Ahoj Týnuško</h1>
+      <p class="subtitle">Gratuluji k vyřešení těžké šifry. 💗<br/>Mám pro tebe něco malého… a není to jen na dneska.</p>
+      <div class="ctaRow">
+        <button class="btn arrow" id="toStep2" aria-label="Pokračovat">
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="step2">
+    <div class="max">
+      <h2 class="sectionTitle">❤️❤️</h2>
+
+      <div class="letter"><span id="typeTarget"></span><span class="cursor" id="cursor"></span></div>
+
+      <div class="ctaRow step2">
+        <button class="btn arrow" id="backTo1" aria-label="Zpět">
+          <span>←</span>
+        </button>
+
+
+        <button class="btn arrow" id="toStep3" aria-label="Pokračovat" style="display:none">
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="step3">
+    <div class="max">
+      <h2 class="sectionTitle">Jak funguje tenhle dárek</h2>
+      <p class="lead" style="margin-top:14px; font-size:clamp(17px,2.6vw,20px); font-weight:600; color:rgba(22,13,21,.95);">
+        Použij to podle nálady — když je den těžší, když chceš jistotu, nebo jen pro úsměv. Vyber si barvu, která se ti zrovna hodí.
+      </p>
+
+      <div class="facts">
+        <div class="fact">
+          <h3>Co to je?</h3>
+          <p><b>18 lístků.</b> Každý je napsaný pro konkrétní náladu nebo moment.</p>
+        </div>
+        <div class="fact">
+          <h3>Proč to je?</h3>
+          <p>Aby sis mohla kdykoliv připomenout, že jsme v tom spolu – i když zrovna nejsme vedle sebe.</p>
+        </div>
+        <div class="fact">
+          <h3>Jak to používat?</h3>
+          <p>Podle toho, jak se cítíš, vyber barvu. Vytáhni jeden lístek. Rozlož ho a přečti si ho v klidu.</p>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="pill">
+          <div class="dot purple"></div>
+          <div>
+            <b>Fialová</b>
+            <span>Když máš těžší den. Klid, opora, pochopení.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="dot blue"></div>
+          <div>
+            <b>Modrá</b>
+            <span>Jistota a „my“. Bezpečí, budoucnost, že v tom nejsi sama.</span>
+          </div>
+        </div>
+        <div class="pill">
+          <div class="dot yellow"></div>
+          <div>
+            <b>Žlutá</b>
+            <span>Úsměv a lehkost. Malé rozveselení, když se bude hodit.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ctaRow" style="justify-content:flex-start">
+        <button class="btn arrow" id="backTo2" aria-label="Zpět">
+          <span>←</span>
+        </button>
+      </div>
+
+      <div class="footer">PS: Jestli budeš chtít, napiš mi, jaký lístek byl dneska ten pravý. 💗</div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // button appears after the hello animation
+      const toStep2Btn = document.getElementById('toStep2');
+      window.setTimeout(() => { if (toStep2Btn) toStep2Btn.style.display = 'inline-block'; }, 900);
+
+      // --- stepper ------------------------------------------------------------
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+      const step3 = document.getElementById('step3');
+      const steps = [step1, step2, step3].filter(Boolean);
+
+      function showStep(idx){
+        steps.forEach((s,i) => s.classList.toggle('active', i === idx));
+        if (idx === 1) startTypewriterOnce();
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+
+      if (toStep2Btn) toStep2Btn.addEventListener('click', () => showStep(1));
+      const toStep3Btn = document.getElementById('toStep3');
+      if (toStep3Btn) toStep3Btn.addEventListener('click', () => showStep(2));
+
+      const backTo1Btn = document.getElementById('backTo1');
+      if (backTo1Btn) backTo1Btn.addEventListener('click', () => showStep(0));
+
+      const backTo2Btn = document.getElementById('backTo2');
+      if (backTo2Btn) backTo2Btn.addEventListener('click', () => showStep(1));
+
+      // --- typewriter ----------------------------------------------------------
+      const letterLines = [
+        "Ahoj lásko,\\n\\n",
+        "jestli tohle čteš, tak jsi právě zvládla moji \\\"těžkou šifru\\\"…\\n",
+        "nebo jsi to vzdala a napsala mi o řešení 😭\\n\\n",
+
+        "Chtěl jsem ti napsat pár vět ručně.\\n",
+        "Ale po čtvrtém zmačkaném papíru jsem si musel přiznat, že můj rukopis není to, co jsem si myslel, a rozhodl jsem se jít touto cestou.\\n\\n",
+
+        "Jsem vděčný za to, že tě mám.\\n",
+        "Možná to někdy neumím dát dost najevo, ale věř mi, že si toho vážím víc, než dokážu říct.\\n\\n",
+
+        "Jsi moje budoucnost.\\n",
+        "A jsi můj pocit klidu.\\n\\n",
+
+        "Když přemýšlím nad tím, kde mám svůj vnitřní mír,\\n",
+        "je to kdekoliv, dokud tam jsi ty.\\n\\n",
+
+        "Vím, že poslední dobou je to těžké.\\n",
+        "Ale možná právě proto si jednou budeme vážit toho, jak lehké to bude.\\n\\n",
+
+        "Jednou se ohlédneme a řekneme si, že tohle období nás jen posílilo.\\n",
+        "A že jsme to zvládli spolu.\\n\\n",
+
+        "A to je pro mě nejdůležitější.\\n\\n",
+
+        "Poslední dobou často vzpomínám na to, jak jsme spolu začali být.\\n",
+        "Na první chvíle, kdy jsme spolu trávili víc času.\\n\\n",
+
+        "Za ten rok a půl jsme se oba změnili.\\n",
+        "Změnily se naše priority, pohled na věci… možná i tempo života.\\n\\n",
+
+        "Ale pokaždé, když nad tím přemýšlím, skončím u stejného závěru.\\n\\n",
+
+        "Pořád jsi ta stejná žena, do které jsem se zamiloval.\\n",
+        "A kterou miluji.\\n\\n",
+
+        "Jsi silnější, než si sama myslíš.\\n",
+        "A každý den mi to znovu dokazuješ.\\n\\n",
+
+        "Jsem na tebe opravdu pyšný.\\n",
+        "A hrdý, že můžu být vedle tebe.\\n\\n",
+
+        "Je to náš druhý Valentýn, který trávíme jako pár.\\n\\n",
+
+        "Jsem si jistý, že jsme si dnešní film užili.\\n",
+        "Že máš vedle sebe vystavenou kytičku.\\n",
+        "A že si k tomu možná dáváš čokoládu, zatímco tohle čteš.\\n\\n",
+
+        "A jsem si jistý ještě jednou věcí.\\n\\n",
+
+        "Že těchto Valentýnů nás čeká ještě spousta.\\n",
+        "A že ten příští už budeme trávit spolu.\\n\\n",
+
+        "A já ti uvařím to nejlepší valentýnské menu na světě. 🙂\\n\\n",
+
+        "A i kdyby se všechno kolem změnilo,\\n",
+        "jedna věc zůstane stejná.\\n\\n",
+
+        "Já si vybírám tebe.\\n",
+        "Znovu a znovu.\\n\\n",
+
+        "A vždycky budu.\\n\\n",
+
+        "Miluji tě.\\n",
+        "Honzulka2310"
+      ];
+
+      const typeTarget = document.getElementById('typeTarget');
+      const cursor = document.getElementById('cursor');
+      const nextBtn = document.getElementById('toStep3');
+
+      let started = false;
+
+      function startTypewriterOnce(){
+        if(started) return;
+        started = true;
+        runTypewriter();
+      }
+
+      async function runTypewriter(){
+        if (!typeTarget || !cursor || !nextBtn) return;
+
+        typeTarget.textContent = '';
+        cursor.style.display = 'inline-block';
+        nextBtn.style.display = 'none';
+
+        const baseCharDelay = 30;
+        const baseLineDelay = 360;
+        const slowFromIndex = letterLines.findIndex(l => l.startsWith("A i kdyby se všechno kolem změnilo"));
+        const slowStart = slowFromIndex >= 0 ? slowFromIndex : (letterLines.length - 10);
+
+        for (let i = 0; i < letterLines.length; i++) {
+          const line = letterLines[i];
+
+          // make the ending slower and more dramatic
+          const isEnding = i >= slowStart;
+          const charDelay = isEnding ? 42 : baseCharDelay;
+          const lineDelay = isEnding ? 520 : baseLineDelay;
+
+          // extra pause right before the final "Miluji tě."
+          if (line.trim() === "Miluji tě.") {
+            await new Promise(r => setTimeout(r, 900));
+          }
+
+          for (const ch of line) {
+            typeTarget.textContent += ch;
+            await new Promise(r => setTimeout(r, charDelay));
+          }
+
+          // a slightly longer pause after "A vždycky budu."
+          if (line.trim() === "A vždycky budu.") {
+            await new Promise(r => setTimeout(r, 900));
+          } else {
+            await new Promise(r => setTimeout(r, lineDelay));
+          }
+        }
+
+        cursor.style.display = 'none';
+        nextBtn.style.display = 'inline-block';
+      }
+
+
+    });
+  </script>
+</body>
+</html>
